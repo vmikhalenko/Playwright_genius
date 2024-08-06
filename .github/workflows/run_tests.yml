@@ -1,6 +1,19 @@
 name: Python autotests
 
-on: [push]
+on: 
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: choose tests set
+        required: True
+        type: choice
+        default: smoke
+        options:
+          - smoke
+          - regression
+          - extended
+          - all
+        
 
 jobs:
   run-tests:
@@ -19,5 +32,5 @@ jobs:
         run: pip install playwright
       - name: Install Playwright browsers
         run: playwright install
-      - name: Run tests
+      - name: Run all tests
         run: pytest
