@@ -33,4 +33,14 @@ jobs:
       - name: Install Playwright browsers
         run: playwright install
       - name: Run all tests
+        if: "github.event.inputs.deployment_target == 'all'"
         run: pytest
+      - name: Run smoke tests
+        if: "github.event.inputs.deployment_target == 'smoke'"
+        run: pytest -m smoke
+      - name: Run regression tests
+        if: "github.event.inputs.deployment_target == 'regression'"
+        run: pytest -m regression
+      - name: Run extended tests
+        if: "github.event.inputs.deployment_target == 'extended'"
+        run: pytest -m extended
