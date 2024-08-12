@@ -1,5 +1,3 @@
-
-
 email_locator = '#email'
 password_locator = '#pass'
 button_locator = '#send2'
